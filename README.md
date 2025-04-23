@@ -3,7 +3,7 @@ Got it! Here's a clean and professional **`README.md`** tailored specifically fo
 
 ---
 
-```markdown
+
 # 🎙️ VoiceCraft - Web Text-to-Speech App
 
 **VoiceCraft** is a simple, elegant web application that converts user input into natural-sounding speech using AI-powered voice models from Pollinations. Built in PHP and JavaScript, the app offers seamless voice selection and instant MP3 audio playback/download — all in your browser.
@@ -91,7 +91,7 @@ _You can add screenshots here showing voice selection and audio output._
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
-```
+
 
 ---
 
