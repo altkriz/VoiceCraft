@@ -7,7 +7,6 @@
 🤖 Powered by: [Pollinations AI](https://pollinations.ai)
 
 ---
-
 ## 🚀 Features
 
 - 🔊 **Instant AI voice generation** via Pollinations (GET API)
