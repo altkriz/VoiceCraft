@@ -1,1 +1,352 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VoiceCraft - AI-powered text-to-speech converter by Kriztech. Transform text into natural-sounding speech with multiple voice models.">
+    <meta name="keywords" content="text-to-speech, TTS, AI voices, speech synthesis, Kriztech, KrizBots">
+    <meta name="author" content="Kriztech">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kriztech.in/voicecraft/">
+    <meta property="og:title" content="VoiceCraft | AI Text-to-Speech Converter">
+    <meta property="og:description" content="Transform text into natural-sounding speech with AI-powered voices by Kriztech.">
+    <meta property="og:image" content="logo.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kriztech.in/voicecraft/">
+    <meta property="twitter:title" content="VoiceCraft | AI Text-to-Speech Converter">
+    <meta property="twitter:description" content="Transform text into natural-sounding speech with AI-powered voices by Kriztech.">
+    <meta property="twitter:image" content="logo.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    
+    <title>VoiceCraft | AI Text-to-Speech Converter by Kriztech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        
+        .voice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .voice-card.active {
+            border: 2px solid #4f46e5;
+            background: rgba(79, 70, 229, 0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
+        }
+        
+        .text-area {
+            min-height: 150px;
+            resize: none;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(79, 70, 229, 0.7);
+        }
+        
+        .kriztech-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header with Kriztech logo -->
+        <header class="text-center mb-12">
+            <a href="https://altkriz.github.io/voicecraft" target="_blank">
+                <img src="logo.jpg" alt="Kriztech Logo" class="kriztech-logo mx-auto rounded-lg">
+            </a>
+            <h1 class="text-5xl font-bold mb-4 glow">
+                <span class="text-indigo-500">Voice</span><span class="text-white">Craft</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                Transform your text into natural-sounding speech with AI-powered voices by Kriztech.
+            </p>
+            <div class="mt-4 text-gray-400">
+                <p>A product of <a href="https://kriztech.in" target="_blank" class="text-indigo-400 hover:underline">Kriztech</a></p>
+                <p class="text-sm mt-1">Created by <a href="https://t.me/krizbots" target="_blank" class="text-indigo-400 hover:underline">KrizBots Telegram Channel</a></p>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Text Input -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl mb-8 transition-all duration-300 hover:shadow-indigo-500/20">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-semibold text-white">
+                        <i class="fas fa-keyboard mr-2 text-indigo-400"></i> Your Text
+                    </h2>
+                    <div class="flex space-x-2">
+                        <button id="clear-btn" class="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition">
+                            <i class="fas fa-trash mr-1"></i> Clear
+                        </button>
+                        <button id="sample-btn" class="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm transition">
+                            <i class="fas fa-lightbulb mr-1"></i> Sample
+                        </button>
+                    </div>
+                </div>
+                <textarea id="text-input" class="w-full text-area bg-gray-900 text-white p-4 rounded-lg border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition" placeholder="Enter your text here..."></textarea>
+                <div class="flex justify-between items-center mt-3 text-sm text-gray-400">
+                    <div id="char-count">0 characters</div>
+                    <div id="max-chars">Max: 2000 characters</div>
+                </div>
+            </div>
+            
+            <!-- Voice Selection -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-6">
+                    <i class="fas fa-robot mr-2 text-indigo-400"></i> Select Voice Model
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="voice-container">
+                    <!-- Voice cards will be added here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Controls -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl mb-8">
+                <div class="flex flex-col sm:flex-row items-center justify-between">
+                    <div class="mb-4 sm:mb-0">
+                        <label for="speed-control" class="block text-sm font-medium text-gray-300 mb-1">Speed: <span id="speed-value">1.0</span>x</label>
+                        <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <button id="generate-btn" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center pulse-animation">
+                        <i class="fas fa-play mr-2"></i> Generate Speech
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Audio Player -->
+            <div id="audio-container" class="bg-gray-800 rounded-xl p-6 shadow-2xl hidden">
+                <h2 class="text-2xl font-semibold text-white mb-4">
+                    <i class="fas fa-music mr-2 text-indigo-400"></i> Your Audio
+                </h2>
+                <div class="flex flex-col items-center">
+                    <audio id="audio-player" controls class="w-full mb-4"></audio>
+                    <a id="download-btn" class="px-6 py-2 bg-green-600 hover:bg-green-500 text-white font-medium rounded-lg transition flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download MP3
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-400 text-sm">
+            <div class="mb-4">
+                <p>Powered by <span class="text-indigo-400">Kriztech Text-to-Speech API</span></p>
+                <div class="flex justify-center space-x-4 mt-2">
+                    <a href="https://kriztech.in" target="_blank" class="hover:text-indigo-400 transition">Website</a>
+                    <a href="https://t.me/krizbots" target="_blank" class="hover:text-indigo-400 transition">Telegram</a>
+                </div>
+            </div>
+            <p>© 2023 <span class="text-indigo-400">VoiceCraft</span> by Kriztech. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    // Voice data
+    const voices = [
+        { id: 'alloy', name: 'Alloy', description: 'Bright and energetic voice', icon: 'fas fa-sun', color: 'text-yellow-400' },
+        { id: 'echo', name: 'Echo', description: 'Deep and resonant voice', icon: 'fas fa-mountain', color: 'text-blue-400' },
+        { id: 'fable', name: 'Fable', description: 'Storytelling voice with warmth', icon: 'fas fa-book-open', color: 'text-purple-400' },
+        { id: 'onyx', name: 'Onyx', description: 'Smooth and sophisticated voice', icon: 'fas fa-gem', color: 'text-gray-300' },
+        { id: 'nova', name: 'Nova', description: 'Friendly and approachable voice', icon: 'fas fa-star', color: 'text-pink-400' },
+        { id: 'shimmer', name: 'Shimmer', description: 'Soft and calming voice', icon: 'fas fa-sparkles', color: 'text-indigo-300' }
+    ];
+    
+    // DOM elements
+    const textInput = document.getElementById('text-input');
+    const charCount = document.getElementById('char-count');
+    const maxChars = document.getElementById('max-chars');
+    const clearBtn = document.getElementById('clear-btn');
+    const sampleBtn = document.getElementById('sample-btn');
+    const voiceContainer = document.getElementById('voice-container');
+    const speedControl = document.getElementById('speed-control');
+    const speedValue = document.getElementById('speed-value');
+    const generateBtn = document.getElementById('generate-btn');
+    const audioContainer = document.getElementById('audio-container');
+    const audioPlayer = document.getElementById('audio-player');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // Variables
+    let selectedVoice = 'alloy';
+    let currentAudioUrl = '';
+    
+    // Initialize voice cards
+    function initVoiceCards() {
+        voiceContainer.innerHTML = '';
+        
+        voices.forEach(voice => {
+            const voiceCard = document.createElement('div');
+            voiceCard.className = `voice-card bg-gray-900 p-4 rounded-lg border border-gray-700 cursor-pointer transition-all duration-300 ${voice.id === selectedVoice ? 'active' : ''}`;
+            voiceCard.innerHTML = `
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full ${voice.color} bg-opacity-20 flex items-center justify-center mr-3">
+                        <i class="${voice.icon} ${voice.color}"></i>
+                    </div>
+                    <h3 class="text-lg font-medium">${voice.name}</h3>
+                </div>
+                <p class="text-sm text-gray-400">${voice.description}</p>
+                <div class="mt-3 flex justify-end">
+                    <span class="text-xs px-2 py-1 bg-gray-800 rounded">${voice.id}</span>
+                </div>
+            `;
+            
+            voiceCard.addEventListener('click', () => {
+                document.querySelectorAll('.voice-card').forEach(card => card.classList.remove('active'));
+                voiceCard.classList.add('active');
+                selectedVoice = voice.id;
+            });
+            
+            voiceContainer.appendChild(voiceCard);
+        });
+    }
+    
+    // Update character count
+    function updateCharCount() {
+        const count = textInput.value.length;
+        charCount.textContent = `${count} characters`;
+        
+        if (count > 2000) {
+            charCount.classList.add('text-red-400');
+            maxChars.classList.add('text-red-400');
+            generateBtn.disabled = true;
+            generateBtn.classList.add('opacity-50');
+            generateBtn.classList.remove('hover:bg-indigo-500');
+            generateBtn.classList.remove('hover:scale-105');
+        } else {
+            charCount.classList.remove('text-red-400');
+            maxChars.classList.remove('text-red-400');
+            generateBtn.disabled = false;
+            generateBtn.classList.remove('opacity-50');
+            generateBtn.classList.add('hover:bg-indigo-500');
+            generateBtn.classList.add('hover:scale-105');
+        }
+    }
+    
+    // Generate audio
+    function generateAudio() {
+        const text = textInput.value.trim();
+        if (!text) {
+            alert('Please enter some text first!');
+            return;
+        }
+        
+        if (text.length > 2000) {
+            alert('Text is too long! Maximum 2000 characters allowed.');
+            return;
+        }
+        
+        // Show loading state
+        generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
+        generateBtn.disabled = true;
+        
+        // Add instruction phrase (hidden from user)
+        const instructionPhrase = "Turn this words into speech";
+        const fullText = `${instructionPhrase}: ${text}`;
+        
+        // Encode text for URL
+        const encodedText = encodeURIComponent(fullText);
+        const speed = speedControl.value;
+        
+        // Build API URL
+        const apiUrl = `https://text.pollinations.ai/${encodedText}?model=openai-audio&voice=${selectedVoice}&speed=${speed}`;
+        
+        // Fetch audio
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const audioUrl = URL.createObjectURL(blob);
+                currentAudioUrl = audioUrl;
+                
+                // Set audio source
+                audioPlayer.src = audioUrl;
+                
+                // Set download link
+                downloadBtn.href = audioUrl;
+                downloadBtn.download = `voicecraft-${selectedVoice}-${Date.now()}.mp3`;
+                
+                // Show audio player
+                audioContainer.classList.remove('hidden');
+                
+                // Reset button
+                generateBtn.innerHTML = '<i class="fas fa-play mr-2"></i> Generate Speech';
+                generateBtn.disabled = false;
+                
+                // Play audio automatically
+                audioPlayer.play();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error generating audio. Please try again.');
+                
+                // Reset button
+                generateBtn.innerHTML = '<i class="fas fa-play mr-2"></i> Generate Speech';
+                generateBtn.disabled = false;
+            });
+    }
+    
+    // Event listeners
+    textInput.addEventListener('input', updateCharCount);
+    
+    clearBtn.addEventListener('click', () => {
+        textInput.value = '';
+        updateCharCount();
+    });
+    
+    sampleBtn.addEventListener('click', () => {
+        textInput.value = "Welcome to VoiceCraft, the ultimate AI-powered text-to-speech converter by Kriztech. With our advanced technology, you can transform any written content into natural-sounding speech. Choose from multiple voice models to find the perfect tone for your needs. Whether it's for presentations, content creation, or accessibility, VoiceCraft has you covered.";
+        updateCharCount();
+    });
+    
+    speedControl.addEventListener('input', () => {
+        speedValue.textContent = speedControl.value + 'x';
+    });
+    
+    generateBtn.addEventListener('click', generateAudio);
+    
+    // Initialize
+    initVoiceCards();
+    updateCharCount();
+});
+    </script>
+</body>
+</html>
