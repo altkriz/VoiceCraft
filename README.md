@@ -1,7 +1,3 @@
-# VoiceCraft
-Got it! Here's a clean and professional **`README.md`** tailored specifically for the **web version** of VoiceCraft, without any Telegram bot references:
-
----
 
 
 # 🎙️ VoiceCraft - Web Text-to-Speech App
