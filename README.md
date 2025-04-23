@@ -94,5 +94,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 
 ---
-
-Let me know if you'd like me to generate badges (e.g., "Built with html,css ,js ", "Live Demo"), preview image banners, or markdown-ready screenshots.
