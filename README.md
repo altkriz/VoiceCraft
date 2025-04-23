@@ -1,10 +1,8 @@
-
-
 # 🎙️ VoiceCraft - Web Text-to-Speech App
 
 **VoiceCraft** is a simple, elegant web application that converts user input into natural-sounding speech using AI-powered voice models from Pollinations. Built in PHP and JavaScript, the app offers seamless voice selection and instant MP3 audio playback/download — all in your browser.
 
-🌐 Live Demo: [https://kriztech.in/bots/voice](https://kriztech.in/bots/voice)  
+🌐 Live Demo: [https://kriztech.in/bots/voice](https://kriztech.in/voicecraft)  
 👨‍💻 Created by: [Kriztech](https://kriztech.in)  
 🤖 Powered by: [Pollinations AI](https://pollinations.ai)
 
@@ -45,11 +43,11 @@ Supported Voices:
 ## 📂 Folder Structure
 
 ```
-/bots/voice/
-├── index.php        # Main app file
-├── style.css        # Custom styling
-├── script.js        # Handles frontend logic (API calls, playback)
-├── assets/          # Icons and sound assets
+
+├── index.html
+├── logo.jpg        # logo
+├── scr1.jpg        # screenshot
+├── scr2.jpg        # screenshot
 └── README.md        # You are here
 ```
 
@@ -59,14 +57,15 @@ Supported Voices:
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/yourusername/voicecraft-web.git
+   git clone https://github.com/altkriz/voicecraft.git
    ```
 
 2. **Upload to your PHP-enabled server.**
 
 3. **Access it via your browser:**
    ```
-   https://yourdomain.com/bots/voice/
+   https://kriztech.in/voicecraft
+   https://altkriz.github.io/voicecraft
    ```
 
 ---
@@ -91,4 +90,4 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-Let me know if you'd like me to generate badges (e.g., "Built with PHP", "Live Demo"), preview image banners, or markdown-ready screenshots.
+Let me know if you'd like me to generate badges (e.g., "Built with html,css ,js ", "Live Demo"), preview image banners, or markdown-ready screenshots.
