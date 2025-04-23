@@ -75,10 +75,10 @@ Supported Voices:
 Here’s a preview of the VoiceCraft web app in action:
 
 ### 🖥️ Home Interface
-![Home Interface](./scr1.png)
+![Home Interface](https://altkriz.github.io/voicecraft/scr1.png)
 
 ### 🔊 Voice Output with Options
-![Voice Output](./scr2.png)
+![Voice Output](https://altkriz.github.io/voicecraft/scr2.png)
 
 ---
 
