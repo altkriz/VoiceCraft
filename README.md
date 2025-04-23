@@ -72,7 +72,13 @@ Supported Voices:
 
 ## 📸 Screenshots
 
-_You can add screenshots here showing voice selection and audio output._
+Here’s a preview of the VoiceCraft web app in action:
+
+### 🖥️ Home Interface
+![Home Interface](./scr1.png)
+
+### 🔊 Voice Output with Options
+![Voice Output](./scr2.png)
 
 ---
 
